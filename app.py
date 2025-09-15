@@ -319,15 +319,15 @@ class WellnessAssistant:
         try:
             # Load models from GitHub or local files
             model_files = {
-                'heart_disease': 'models/heart_disease_model.pkl',
-                'diabetes': 'models/diabetes_model.pkl', 
-                'hypertension': 'models/hypertension_model.pkl'
+                'heart_disease': 'heart_disease_model.pkl',
+                'diabetes': 'diabetes_model.pkl', 
+                'hypertension': 'hypertension_model.pkl'
             }
             
             scaler_files = {
-                'heart_disease': 'models/heart_disease_scaler.pkl',
-                'diabetes': 'models/diabetes_scaler.pkl',
-                'hypertension': 'models/hypertension_scaler.pkl'
+                'heart_disease': 'heart_disease_scaler.pkl',
+                'diabetes': 'diabetes_scaler.pkl',
+                'hypertension': 'hypertension_scaler.pkl'
             }
             
             # Try to load local files first
@@ -338,8 +338,8 @@ class WellnessAssistant:
                         self.scalers[condition] = joblib.load(scaler_files[condition])
             
             # Load feature names if available
-            if os.path.exists('models/feature_names.pkl'):
-                self.feature_names = joblib.load('models/feature_names.pkl')
+            if os.path.exists('feature_names.pkl'):
+                self.feature_names = joblib.load('feature_names.pkl')
             else:
                 # Default feature names
                 self.feature_names = {
@@ -842,7 +842,7 @@ def generate_ai_response(question, patient_data, predictions):
     # Improvement questions
     elif any(word in question_lower for word in ['improve', 'reduce', 'lower', 'better', 'help']):
         if not predictions:
-            return "I need your health assessment data to provide personalized recommendations."
+            return "I need your health assessment data to provide personalised recommendations."
         
         # Get top priority condition
         highest_risk = max(predictions.items(), key=lambda x: x[1]['probability'])
@@ -976,14 +976,14 @@ def display_welcome_screen():
         Our intelligent health companion provides:
         
         ✅ **Risk Assessment** for Heart Disease, Diabetes, and Hypertension  
-        ✅ **Personalized Recommendations** for diet, exercise, and lifestyle  
+        ✅ **Personalised Recommendations** for diet, exercise, and lifestyle  
         ✅ **AI-Powered Explanations** of your health risks  
         ✅ **Interactive Health Assistant** to answer your questions  
         
         ### 🚀 How to Get Started
         
         1. **📋 Complete Assessment** - Fill out your information in the sidebar
-        2. **🔍 Analyze Risks** - Click the "Analyze Health Risks" button  
+        2. **🔍 Analyse Risks** - Click the "Analyse Health Risks" button  
         3. **📊 Review Results** - Understand your personalized risk profile
         4. **💡 Follow Plan** - Get your customized wellness recommendations
         5. **🤖 Ask Questions** - Chat with your AI health assistant
@@ -1055,4 +1055,5 @@ def display_welcome_screen():
             """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
+
     main()
